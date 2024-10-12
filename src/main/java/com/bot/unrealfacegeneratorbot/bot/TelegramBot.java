@@ -32,9 +32,22 @@ public class TelegramBot extends TelegramLongPollingBot {
             var text = update.getMessage().getText();
             switch (text) {
                 case "/photo": sendPhoto(chatId); break;
+                case "/start": start(chatId); break;
                 default: unknownText(chatId); break;
              }
             }
+    }
+
+    private void start(Long chatId) {
+        String startMessage = "Hello! This bot generates non-existent faces. Use /photo to generate one.";
+        try {
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setChatId(chatId.toString());
+            sendMessage.setText(startMessage);
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
     }
 
     private void unknownText(Long chatId) {
