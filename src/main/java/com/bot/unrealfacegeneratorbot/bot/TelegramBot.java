@@ -4,13 +4,12 @@ import com.bot.unrealfacegeneratorbot.image.ImageClient;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 public class TelegramBot extends TelegramLongPollingBot {
@@ -33,8 +32,20 @@ public class TelegramBot extends TelegramLongPollingBot {
             var text = update.getMessage().getText();
             switch (text) {
                 case "/photo": sendPhoto(chatId); break;
+                default: unknownText(chatId); break;
+             }
             }
-            }
+    }
+
+    private void unknownText(Long chatId) {
+        try {
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setChatId(chatId.toString());
+            sendMessage.setText("Please use specified commands!");
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
     }
 
     private void sendPhoto(Long chatId) {
@@ -58,6 +69,8 @@ public class TelegramBot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
     }
+
+
 
     @Override
     public String getBotUsername() {
