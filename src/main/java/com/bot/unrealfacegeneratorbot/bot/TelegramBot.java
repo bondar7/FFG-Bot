@@ -30,7 +30,10 @@ public class TelegramBot extends TelegramLongPollingBot {
         // Checking if message is not empty
         if (update.hasMessage() && update.getMessage().hasText()) {
             var chatId = update.getMessage().getChatId();
-            sendPhoto(chatId);
+            var text = update.getMessage().getText();
+            switch (text) {
+                case "/photo": sendPhoto(chatId); break;
+            }
             }
     }
 
@@ -40,9 +43,11 @@ public class TelegramBot extends TelegramLongPollingBot {
             InputStream inputStream = imageClient.fetchImage();
             if (inputStream != null) {
                InputFile inputFile = new InputFile(inputStream, "unreal-face.jpg");
+               String caption = "A new photo for you!";
                 // Prepare photo before sending
                 SendPhoto sendPhoto = new SendPhoto();
                 sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(caption);
                 sendPhoto.setPhoto(inputFile);
                 // Send photo
                 execute(sendPhoto);
