@@ -1,14 +1,10 @@
 package com.bot.unrealfacegeneratorbot.image;
 
 import lombok.AllArgsConstructor;
-import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.telegram.telegrambots.meta.api.objects.InputFile;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -20,7 +16,6 @@ public class ImageClient {
 
     // Method to fetch the image and return an InputStream
     public InputStream fetchImage() {
-        int originalImageHeight = 1024;
         int croppedImageHeight = 1000;
         try {
             // Creating httpclient

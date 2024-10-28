@@ -1,8 +1,8 @@
 ### out ###
-out
+out/
 
 ### RESOURCES ###
-src/main/resources/
+src/main/resources/*
 
 HELP.md
 target/

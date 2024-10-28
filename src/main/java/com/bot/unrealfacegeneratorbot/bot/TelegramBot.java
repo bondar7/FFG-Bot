@@ -1,8 +1,7 @@
 package com.bot.unrealfacegeneratorbot.bot;
 
 import com.bot.unrealfacegeneratorbot.image.ImageClient;
-import lombok.SneakyThrows;
-import org.telegram.telegrambots.bots.DefaultBotOptions;
+import lombok.AllArgsConstructor;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
@@ -12,19 +11,15 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.InputStream;
 
+@AllArgsConstructor
 public class TelegramBot extends TelegramLongPollingBot {
 
+    private String botToken;
+    private String botName;
     private ImageClient imageClient;
 
-    public TelegramBot(
-            DefaultBotOptions botOptions, String botToken, ImageClient imageClient
-    ) {
-        super(botOptions, botToken);
-        this.imageClient = imageClient;
-    }
 
     @Override
-    @SneakyThrows
     public void onUpdateReceived(Update update) {
         // Checking if message is not empty
         if (update.hasMessage() && update.getMessage().hasText()) {
@@ -34,8 +29,18 @@ public class TelegramBot extends TelegramLongPollingBot {
                 case "/photo": sendPhoto(chatId); break;
                 case "/start": start(chatId); break;
                 default: unknownText(chatId); break;
-             }
             }
+        }
+    }
+
+    @Override
+    public String getBotToken() {
+        return botToken;
+    }
+
+    @Override
+    public String getBotUsername() {
+        return botName;
     }
 
     private void start(Long chatId) {
@@ -81,12 +86,5 @@ public class TelegramBot extends TelegramLongPollingBot {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-
-
-    @Override
-    public String getBotUsername() {
-        return "unreal-face-generator-bot";
     }
 }
