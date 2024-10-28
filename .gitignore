@@ -1,5 +1,8 @@
-### Ignore application.properties ###
-src/main/resources/application.properties
+### out ###
+out
+
+### RESOURCES ###
+src/main/resources/
 
 HELP.md
 target/
