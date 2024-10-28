@@ -1,4 +1,4 @@
-FAKE FACE GENERATOR 🤖
+                                                         FAKE FACE GENERATOR 🤖
 
 Welcome to the FFG Bot! This is a Telegram bot designed to create unique, lifelike faces of fictional individuals. With the power of AI-generated imagery, you can easily access an endless array of human faces that don’t belong to real people—great for design, research, or just for fun!
 
