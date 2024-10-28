@@ -16,7 +16,9 @@ Welcome to the FFG Bot! This is a Telegram bot designed to create unique, lifeli
 - Install Telegram and sign in.
 - Use this link to access the FFG Bot: https://t.me/unreal_face_bot or search it by name: @unreal_face_bot.
 
-📖 How It Works This bot integrates with advanced AI face-generation APIs to retrieve images of people who don’t exist. With each request, it generates a fresh, lifelike portrait, making it a great way to access anonymized faces.
+📖 How It Works?
+This bot integrates with advanced AI face-generation APIs to retrieve images of people who don’t exist. 
+With each request, it generates a fresh, lifelike portrait, making it a great way to access anonymized faces.
 
 🛠 Tech Stack
 - Java and Spring Boot for backend functionality.
